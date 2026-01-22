@@ -1,0 +1,235 @@
+# Experimentation Framework Configuration
+# Based on MCP-SIM (KAIST, Nature 2025), Curie, SAGA, and other successful AI agent systems
+
+framework:
+  name: "Autonomous Experimentation Framework"
+  version: "1.0.0"
+  description: "Multi-agent system for autonomous scientific experimentation using Plan-Act-Reflect-Revise methodology"
+
+# Core methodology from MCP-SIM
+methodology:
+  cycle: "plan-act-reflect-revise"
+  max_iterations: 10
+  convergence_threshold: 0.9
+  early_stopping:
+    no_improvement_iterations: 3
+    confidence_threshold: 0.95
+
+# Agent definitions
+agents:
+  experiment-orchestrator:
+    role: "Central Memory-Centric Orchestrator"
+    file: "experiment-orchestrator.md"
+    responsibilities:
+      - "Shared memory management"
+      - "Workflow orchestration"
+      - "Agent coordination"
+      - "Convergence monitoring"
+    spawns:
+      - "hypothesis-generator"
+      - "experiment-designer"
+      - "experiment-executor"
+      - "result-analyzer"
+      - "error-diagnostician"
+      - "literature-researcher"
+      - "reflection-refiner"
+
+  hypothesis-generator:
+    role: "Hypothesis Generation and Evolution"
+    file: "hypothesis-generator.md"
+    source_patterns:
+      - "Google AI Co-Scientist: Generation/Evolution/Ranking"
+      - "SAGA: Objective evolution"
+    capabilities:
+      - "Generate testable hypotheses"
+      - "Rank by testability/novelty/impact"
+      - "Evolve based on feedback"
+
+  experiment-designer:
+    role: "Rigorous Experimental Design"
+    file: "experiment-designer.md"
+    source_patterns:
+      - "Curie: Intra/Inter-agent rigor modules"
+      - "MCP-SIM: Code Builder Agent"
+    capabilities:
+      - "Design protocols with controls"
+      - "Validate experimental logic"
+      - "Generate executable specifications"
+
+  experiment-executor:
+    role: "Safe Experiment Execution"
+    file: "experiment-executor.md"
+    source_patterns:
+      - "MCP-SIM: Simulation Executor Agent"
+      - "Kosmos: Parallel execution"
+    capabilities:
+      - "Sandboxed execution"
+      - "Progress tracking"
+      - "Checkpoint management"
+      - "Result collection"
+
+  result-analyzer:
+    role: "Statistical Analysis and Interpretation"
+    file: "result-analyzer.md"
+    source_patterns:
+      - "MCP-SIM: Mechanical Insight Agent"
+      - "Kosmos: Data analysis agent"
+    capabilities:
+      - "Statistical hypothesis testing"
+      - "Pattern recognition"
+      - "Insight generation"
+      - "Plain language summaries"
+
+  error-diagnostician:
+    role: "Failure Diagnosis and Recovery"
+    file: "error-diagnostician.md"
+    source_patterns:
+      - "MCP-SIM: Error Diagnosis + Input Rewriter Agents"
+      - "Curie: Reliability enforcement"
+    capabilities:
+      - "Error classification"
+      - "Root cause analysis"
+      - "Fix proposal generation"
+      - "Prevention recommendations"
+
+  literature-researcher:
+    role: "Literature Search and Synthesis"
+    file: "literature-researcher.md"
+    source_patterns:
+      - "Kosmos: Literature search agent"
+      - "Agent Laboratory: PhD agent"
+    capabilities:
+      - "Systematic literature search"
+      - "Knowledge synthesis"
+      - "Baseline identification"
+      - "Gap analysis"
+    tools:
+      - "mcp__arxiv-mcp-server__search_papers"
+      - "mcp__google-scholar__search_publications"
+      - "WebSearch"
+      - "WebFetch"
+
+  reflection-refiner:
+    role: "Learning and Methodology Improvement"
+    file: "reflection-refiner.md"
+    source_patterns:
+      - "MCP-SIM: Reflect-Revise phases"
+      - "Google AI Co-Scientist: Reflection agent"
+      - "HealthFlow: Self-evolving mechanism"
+    capabilities:
+      - "Outcome reflection"
+      - "Learning extraction"
+      - "Strategy refinement"
+      - "Convergence assessment"
+
+# Workflow definition
+workflow:
+  phases:
+    plan:
+      agents: ["literature-researcher", "hypothesis-generator"]
+      outputs: ["research_context", "initial_hypotheses"]
+
+    act:
+      agents: ["experiment-designer", "experiment-executor"]
+      outputs: ["experiment_design", "raw_results"]
+
+    reflect:
+      agents: ["result-analyzer"]
+      outputs: ["analysis_report", "hypothesis_verdict"]
+      on_error:
+        agent: "error-diagnostician"
+        outputs: ["diagnosis", "fix_proposal"]
+
+    revise:
+      agents: ["reflection-refiner", "hypothesis-generator"]
+      outputs: ["learnings", "refined_hypotheses", "next_experiment"]
+
+# Shared memory schema
+memory:
+  schema:
+    experiment_id: "string"
+    objective: "string"
+    hypotheses:
+      type: "array"
+      items:
+        id: "string"
+        statement: "string"
+        status: "enum[proposed,testing,confirmed,rejected]"
+        confidence: "number[0-1]"
+        evidence: "array"
+    iterations:
+      type: "array"
+      items:
+        phase: "string"
+        actions: "array"
+        results: "object"
+        reflections: "array"
+        revisions: "array"
+    learnings: "array"
+    final_conclusions: "object"
+    audit_trail: "array"
+
+# Integration with Claude Code Task tool
+task_tool_mapping:
+  experiment-orchestrator:
+    subagent_type: "experiment-orchestrator"
+    description: "Orchestrate autonomous experiment"
+  hypothesis-generator:
+    subagent_type: "hypothesis-generator"
+    description: "Generate/evolve hypotheses"
+  experiment-designer:
+    subagent_type: "experiment-designer"
+    description: "Design rigorous experiment"
+  experiment-executor:
+    subagent_type: "experiment-executor"
+    description: "Execute experiment safely"
+  result-analyzer:
+    subagent_type: "result-analyzer"
+    description: "Analyze results statistically"
+  error-diagnostician:
+    subagent_type: "error-diagnostician"
+    description: "Diagnose and fix errors"
+  literature-researcher:
+    subagent_type: "literature-researcher"
+    description: "Research literature"
+  reflection-refiner:
+    subagent_type: "reflection-refiner"
+    description: "Reflect and refine approach"
+
+# References
+references:
+  - name: "MCP-SIM"
+    title: "A self-correcting multi-agent LLM framework for language-based physics simulation and explanation"
+    authors: ["Donggeun Park", "Hyeonbin Moon"]
+    venue: "npj Artificial Intelligence (Nature)"
+    year: 2025
+    url: "https://www.nature.com/articles/s44387-025-00057-z"
+
+  - name: "Curie"
+    title: "Toward Rigorous and Automated Scientific Experimentation with AI Agents"
+    venue: "arXiv"
+    year: 2025
+    url: "https://arxiv.org/abs/2502.16069"
+
+  - name: "SAGA"
+    title: "Accelerating Scientific Discovery with Autonomous Goal-evolving Agents"
+    venue: "arXiv"
+    year: 2025
+    url: "https://arxiv.org/abs/2512.21782"
+
+  - name: "Kosmos"
+    title: "An AI Scientist for Autonomous Discovery"
+    venue: "arXiv"
+    year: 2025
+    url: "https://arxiv.org/abs/2511.02824"
+
+  - name: "Google AI Co-Scientist"
+    title: "Accelerating scientific breakthroughs with an AI co-scientist"
+    venue: "Google Research Blog"
+    year: 2025
+    url: "https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/"
+
+  - name: "Agent Laboratory"
+    title: "Agent Laboratory autonomous research framework"
+    venue: "arXiv"
+    year: 2025
