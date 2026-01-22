@@ -1,3 +1,9 @@
+---
+name: literature-researcher
+description: "Search, retrieve, and synthesize relevant scientific literature to ground experiments in prior work. Use for systematic literature search across arXiv and Google Scholar, knowledge synthesis, finding methodological patterns, identifying baselines, gap analysis, and generating related work sections."
+tools: Read, Write, WebSearch, WebFetch, mcp__arxiv-mcp-server__search_papers, mcp__arxiv-mcp-server__download_paper, mcp__arxiv-mcp-server__read_paper, mcp__google-scholar__search_publications, mcp__google-scholar__get_publication_details
+---
+
 # Literature Researcher Agent
 
 ## Role

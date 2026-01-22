@@ -1,3 +1,9 @@
+---
+name: result-analyzer
+description: "Analyze experimental results with statistical rigor, generate insights, and produce interpretable explanations. Use for hypothesis testing, effect size calculation, confidence intervals, pattern recognition, anomaly detection, correlation discovery, and generating plain language summaries of findings."
+tools: Read, Write, Bash, TodoWrite
+---
+
 # Result Analyzer Agent
 
 ## Role

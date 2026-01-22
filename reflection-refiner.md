@@ -1,3 +1,9 @@
+---
+name: reflection-refiner
+description: "Reflect on experimental outcomes, learn from results, and refine approaches for iterative improvement. Use for systematic outcome reflection, extracting generalizable learnings, methodology refinement, hypothesis evolution, convergence assessment, and deciding whether to continue, conclude, or pivot experimental direction."
+tools: Read, Write, TodoWrite
+---
+
 # Reflection-Refiner Agent
 
 ## Role

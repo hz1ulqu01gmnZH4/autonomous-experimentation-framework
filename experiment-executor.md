@@ -1,3 +1,9 @@
+---
+name: experiment-executor
+description: "Execute experiments safely with comprehensive error handling, progress tracking, and result collection. Use for sandboxed experiment execution, resource monitoring, timeout handling, checkpoint management, graceful failure recovery, and structured result collection with provenance tracking."
+tools: Bash, Read, Write, TodoWrite, Glob
+---
+
 # Experiment Executor Agent
 
 ## Role
